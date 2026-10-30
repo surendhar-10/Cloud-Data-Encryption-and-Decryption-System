@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}<div class="heading"><div><div class="eyebrow">YOUR PRIVATE STORAGE</div><h1>Dashboard</h1><p class="muted">Files are encrypted before they are written to cloud storage.</p></div><div class="pill">● AES-256-GCM enabled</div></div>
+<section class="card upload"><h2>Encrypt &amp; upload a file</h2><form method="post" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+<label>Select file <span class="muted">(maximum 25 MB)</span></label><input type="file" name="file" required>
+<label>Encryption password</label><input type="password" name="encryption_password" minlength="8" required placeholder="Use a strong password">
+<p class="hint">Remember this password. It is not stored and cannot be recovered if lost.</p><button>🔒 Encrypt and upload</button></form></section>
+<section class="card"><div class="section-title"><h2>Your encrypted files</h2><span class="pill">{{ files|length }} file(s)</span></div>
+{% if files %}<div class="table-wrap"><table><thead><tr><th>File name</th><th>Size</th><th>Uploaded</th><th>Action</th></tr></thead><tbody>
+{% for file in files %}<tr><td><strong>🔐 {{ file.original_name }}</strong><small>Encrypted at rest</small></td><td>{{ "%.2f"|format(file.size/1024) }} KB</td><td>{{ file.uploaded_at }}</td><td><form class="download-form" method="post" action="{{ url_for('download', file_id=file.id) }}"><input type="password" name="decryption_password" required placeholder="Decryption password"><button class="small">Decrypt &amp; download</button></form></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<div class="empty"><div class="lock">🔐</div><h3>No files yet</h3><p class="muted">Upload a file above to encrypt and store it.</p></div>{% endif %}</section>
+{% endblock %}

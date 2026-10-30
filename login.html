@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block content %}<section class="auth card"><div class="eyebrow">SECURE CLOUD STORAGE</div><h1>Welcome back</h1><p class="muted">Log in to manage your encrypted files.</p>
+<form method="post"><label>Username</label><input name="username" required autocomplete="username"><label>Password</label><input type="password" name="password" required autocomplete="current-password"><button>Login</button></form>
+<p class="muted center">New here? <a href="{{ url_for('register') }}">Create an account</a></p></section>{% endblock %}

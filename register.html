@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block content %}<section class="auth card"><div class="eyebrow">CREATE ACCOUNT</div><h1>Get started</h1><p class="muted">Your account password is stored as a one-way hash.</p>
+<form method="post"><label>Username</label><input name="username" required minlength="3"><label>Password</label><input type="password" name="password" required minlength="8"><button>Create account</button></form>
+<p class="muted center">Already registered? <a href="{{ url_for('login') }}">Login</a></p></section>{% endblock %}

@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CloudVault | Secure File Storage</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header><a class="brand" href="{{ url_for('index') }}">☁ CloudVault</a>
+{% if session.get('username') %}<nav><span>{{ session.username }}</span><a href="{{ url_for('dashboard') }}">Dashboard</a><a href="{{ url_for('logout') }}">Logout</a></nav>{% endif %}</header>
+<main>{% with messages = get_flashed_messages() %}{% if messages %}<div class="messages">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}</main><footer>Cloud Data Encryption &amp; Decryption System · AES-256-GCM</footer></body></html>
